@@ -1,7 +1,9 @@
+package com.apps.quantitymeasurement;
+
 public class QuantityMeasurementApp {
 
-    // Inner class for Feet
-    static class Feet {
+    // Feet class
+    public static class Feet {
         private final double value;
 
         public Feet(double value) {
@@ -10,27 +12,49 @@ public class QuantityMeasurementApp {
 
         @Override
         public boolean equals(Object obj) {
-
-            // Same reference check
             if (this == obj) return true;
-
-            // Null and type check
             if (obj == null || this.getClass() != obj.getClass()) return false;
 
-            // Cast
             Feet other = (Feet) obj;
-
-            // Compare using Double.compare
             return Double.compare(this.value, other.value) == 0;
         }
     }
 
-    // Main method
-    public static void main(String[] args) {
+    // Inches class (same logic — YES duplication is expected in UC2)
+    public static class Inches {
+        private final double value;
 
+        public Inches(double value) {
+            this.value = value;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (this == obj) return true;
+            if (obj == null || this.getClass() != obj.getClass()) return false;
+
+            Inches other = (Inches) obj;
+            return Double.compare(this.value, other.value) == 0;
+        }
+    }
+
+    // Separate methods (IMPORTANT for UC2)
+    public static void demonstrateFeetEquality() {
         Feet f1 = new Feet(1.0);
         Feet f2 = new Feet(1.0);
 
-        System.out.println(f1.equals(f2)); // true
+        System.out.println("Feet equal: " + f1.equals(f2));
+    }
+
+    public static void demonstrateInchesEquality() {
+        Inches i1 = new Inches(1.0);
+        Inches i2 = new Inches(1.0);
+
+        System.out.println("Inches equal: " + i1.equals(i2));
+    }
+
+    public static void main(String[] args) {
+        demonstrateFeetEquality();
+        demonstrateInchesEquality();
     }
 }
